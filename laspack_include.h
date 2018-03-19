@@ -1,0 +1,4 @@
+#ifndef LASPACK_INCLUDE_H
+#define LASPACK_INCLUDE_H
+
+#endif // LASPACK_INCLUDE_H
