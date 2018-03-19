@@ -29,6 +29,7 @@ static int GMRESSteps = 10;
 Vector *JacobiIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
             PrecondProcType Dummy, double Omega)
 {
+    (void)Dummy; // fixing unused
     int Iter;
     double bNorm;
     size_t Dim;
@@ -78,6 +79,7 @@ Vector *JacobiIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
 Vector *SORForwIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
             PrecondProcType Dummy, double Omega)
 {
+    (void)Dummy; // fixing unused
     int Iter;
     double bNorm;
     size_t Dim;
@@ -127,6 +129,7 @@ Vector *SORForwIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
 Vector *SORBackwIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
             PrecondProcType Dummy, double Omega)
 {
+    (void)Dummy; // fixing unused
     int Iter;
     double bNorm;
     size_t Dim;
@@ -176,6 +179,7 @@ Vector *SORBackwIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
 Vector *SSORIter(QMatrix *A, Vector *x, Vector *b, int MaxIter,
             PrecondProcType Dummy, double Omega)
 {
+    (void)Dummy; // fixing unused
     int Iter;
     double bNorm;
     size_t Dim;
