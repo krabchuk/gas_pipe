@@ -22,6 +22,8 @@
 
 #define PEN_FACT 1e-4
 
+#define EPS 1e-15
+
 QMatrix *ILUFactor(QMatrix *Q)
 /* returns matrix which contains the incomplete factorized matrix Q */
 {
@@ -295,7 +297,7 @@ QMatrix *ILUFactor(QMatrix *Q)
                 Q->ILU->ElOrder = Q->ElOrder;
 		
                 /* check for multipliers of the matrix Q */
-                if (Q->MultiplU == Q->MultiplD && Q->MultiplL == Q->MultiplD) {
+                if (fabs (Q->MultiplU - Q->MultiplD) < EPS && fabs (Q->MultiplL - Q->MultiplD) < EPS) {
                     /* multipliers of matrix Q are valid for Q->ILU too */
                     Q->ILU->MultiplD = Q->MultiplD;
                     Q->ILU->MultiplU = Q->MultiplU;

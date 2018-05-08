@@ -16,6 +16,9 @@ void solver_init (solver_t *solver,
                  double mu_arg,
                  int solver_type_arg)
 {
+  int total_dots_amount = (solver->MY * 3 + 1) * (solver->MX + 1) + solver->MX * (solver->MY + 1);
+  int total_equations_amount = 3 * total_dots_amount;
+
   solver->MX = MX_arg;
   solver->MY = MY_arg;
   solver->N = N_arg;
@@ -28,9 +31,6 @@ void solver_init (solver_t *solver,
   solver->mu = mu_arg;
 
   solver->solver_type = solver_type_arg;
-
-  int total_dots_amount = (solver->MY * 3 + 1) * (solver->MX + 1) + solver->MX * (solver->MY + 1);
-  int total_equations_amount = 3 * total_dots_amount;
 
   solver->base_ws = base_ws_arg;
 

@@ -23,6 +23,8 @@
 #include "laspack/rtc.h"
 #include "laspack/copyrght.h"
 
+#define EPS 1e-15
+
 typedef struct {
     double MinEigenval;
     double MaxEigenval;
@@ -71,7 +73,7 @@ double GetMinEigenval(QMatrix *A, PrecondProcType PrecondProc, double OmegaPreco
 	
         /* if eigenvalues estimated with an other preconditioner, ... */
         if (EigenvalInfo->PrecondProcUsed != PrecondProc
-	    || EigenvalInfo->OmegaPrecondUsed != OmegaPrecond) {
+            || fabs (EigenvalInfo->OmegaPrecondUsed - OmegaPrecond) > EPS) {
             EstimEigenvals(A, PrecondProc, OmegaPrecond);
         }
 
@@ -110,7 +112,7 @@ double GetMaxEigenval(QMatrix *A, PrecondProcType PrecondProc, double OmegaPreco
 	
         /* if eigenvalues estimated with an other preconditioner, ... */
         if (EigenvalInfo->PrecondProcUsed != PrecondProc
-	    || EigenvalInfo->OmegaPrecondUsed != OmegaPrecond) {
+            || fabs (EigenvalInfo->OmegaPrecondUsed - OmegaPrecond) > EPS) {
             EstimEigenvals(A, PrecondProc, OmegaPrecond);
         }
 

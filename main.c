@@ -1,6 +1,6 @@
 #include "solver.h"
 
-int main()
+int main(void)
 {
   solver_t solver;
   solver_ws base_ws;

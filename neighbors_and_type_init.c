@@ -9,6 +9,11 @@ void init_neighbors_and_type (solver_t *solver)
   int MX = solver->MX;
   int MY = solver->MY;
 
+  int last_row;
+  int first_num;
+  int first_num_in_row;
+  int first_num_in_last_row;
+
   solver->top_neighbor = (int *)malloc(n * sizeof (int));
   solver->bottom_neighbor = (int *)malloc(n * sizeof (int));
   solver->left_neighbor = (int *)malloc(n * sizeof (int));
@@ -68,8 +73,8 @@ void init_neighbors_and_type (solver_t *solver)
       solver->dot_type[MX] = 5;
     }
 
-  int last_row = MY * 2 - 1;
-  int first_num_in_row = last_row * MX + 1;
+  last_row = MY * 2 - 1;
+  first_num_in_row = last_row * MX + 1;
 
   // Left border
   solver->top_neighbor[first_num_in_row] = first_num_in_row + 2 * MX + 1;
@@ -99,7 +104,7 @@ void init_neighbors_and_type (solver_t *solver)
   /*-------------------End of vertical part--------------------*/
   /*-------------------Start of horizontal part----------------*/
 
-  int first_num = 2 * MY * (MX + 1);
+  first_num = 2 * MY * (MX + 1);
 
   solver->top_neighbor[first_num] = first_num + 2 * MX + 1;
   solver->bottom_neighbor[first_num] = -1;
@@ -163,7 +168,7 @@ void init_neighbors_and_type (solver_t *solver)
       solver->dot_type[first_num_in_row + 2 * MX] = 5;
     }
 
-  int first_num_in_last_row = first_num + (2 * MX + 1) * MY;
+  first_num_in_last_row = first_num + (2 * MX + 1) * MY;
 
   solver->top_neighbor[first_num_in_last_row] = -1;
   solver->bottom_neighbor[first_num_in_last_row] = first_num_in_last_row - 2 * MX - 1;
