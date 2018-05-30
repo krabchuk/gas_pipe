@@ -19,7 +19,8 @@ SOURCES += \
     main.c \
     solver.c \
     parser.c \
-    neighbors_and_type_init.c
+    neighbors_and_type_init.c \
+    fill.c
 
 HEADERS += \
     laspack/copyrght.h \
@@ -40,4 +41,5 @@ HEADERS += \
     laspack_include.h \
     solver.h \
     parser.h \
-    neighbors_and_type_init.h
+    neighbors_and_type_init.h \
+    fill.h

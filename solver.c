@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 void solver_init (solver_t *solver,
@@ -63,6 +64,9 @@ void msr_matrix_rhs_init (int total_equations_amount, msr_matrix_rhs *matrix_rhs
   matrix_rhs_storage->matrix = (double *)malloc((total_equations_amount + total_equations_amount * 9 + 1) * sizeof (double));
   matrix_rhs_storage->rhs = (double *)malloc(total_equations_amount * sizeof (double));
   matrix_rhs_storage->row_non_zeros = (int *)malloc((total_equations_amount + total_equations_amount * 9 + 1) * sizeof (int));
+
+  memset (matrix_rhs_storage->row_non_zeros, 0, (total_equations_amount + total_equations_amount * 9 + 1) * sizeof (int));
+  matrix_rhs_storage->row_non_zeros[0] = matrix_rhs_storage->n + 1;
 }
 
 void solver_free (solver_t *solver)
@@ -80,4 +84,20 @@ void solver_free (solver_t *solver)
   free (solver->base_ws->matrix_rhs_storage_preconditioned->matrix);
   free (solver->base_ws->matrix_rhs_storage_preconditioned->rhs);
   free (solver->base_ws->matrix_rhs_storage_preconditioned->row_non_zeros);
+}
+
+
+int get_equation_g (int dot_number)
+{
+  return dot_number * 3;
+}
+
+int get_equation_v1 (int dot_number)
+{
+  return dot_number * 3 + 1;
+}
+
+int get_equation_v2 (int dot_number)
+{
+  return dot_number * 3 + 2;
 }

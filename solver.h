@@ -4,6 +4,7 @@
 typedef struct
 {
   int n;
+  int total_nz;
   double *matrix;
   double *rhs;
   int *row_non_zeros;
@@ -90,6 +91,10 @@ void solver_run (solver_t *solver);
 
 void msr_matrix_rhs_init (int total_equations_amount,
                           msr_matrix_rhs *matrix_rhs_storage);
+
+int get_equation_g (int dot_number);
+int get_equation_v1 (int dot_number);
+int get_equation_v2 (int dot_number);
 
 
 

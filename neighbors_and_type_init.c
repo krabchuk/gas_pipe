@@ -26,7 +26,7 @@ void init_neighbors_and_type (solver_t *solver)
   solver->bottom_neighbor[0] = -1;
   solver->left_neighbor[0] = -1;
   solver->right_neighbor[0] = 1;
-  solver->dot_type[0] = 6;
+  solver->dot_type[0] = 4;
 
   for (int i = 1; i < MX; ++i)
     {
@@ -41,7 +41,7 @@ void init_neighbors_and_type (solver_t *solver)
   solver->bottom_neighbor[MX] = -1;
   solver->left_neighbor[MX] = MX - 1;
   solver->right_neighbor[MX] = -1;
-  solver->dot_type[MX] = 6;
+  solver->dot_type[MX] = 5;
 
 
   for (int row = 1; row < MY * 2 - 1; ++row)
@@ -110,7 +110,7 @@ void init_neighbors_and_type (solver_t *solver)
   solver->bottom_neighbor[first_num] = -1;
   solver->left_neighbor[first_num] = -1;
   solver->right_neighbor[first_num] = first_num + 1;
-  solver->dot_type[first_num] = 1;
+  solver->dot_type[first_num] = 3;
 
   for (int i = first_num + 1; i < first_num + MX; ++i)
     {
@@ -174,7 +174,7 @@ void init_neighbors_and_type (solver_t *solver)
   solver->bottom_neighbor[first_num_in_last_row] = first_num_in_last_row - 2 * MX - 1;
   solver->left_neighbor[first_num_in_last_row] = -1;
   solver->right_neighbor[first_num_in_last_row] = first_num_in_last_row + 1;
-  solver->dot_type[first_num_in_last_row] = 1;
+  solver->dot_type[first_num_in_last_row] = 2;
 
   for (int i = first_num_in_last_row; i < first_num_in_last_row + 2 * MX; ++i)
     {
