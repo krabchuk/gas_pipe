@@ -5,6 +5,8 @@
 #include "solver.h"
 #include "parser.h"
 
+int fill_zero_layer (solver_t *solver);
+
 int fill_by_prev_layer (solver_t *solver);
 
 int fill_dot (solver_t *solver, int dot_number);
@@ -15,6 +17,7 @@ int fill_dot_2 (solver_t *solver, int dot_number);
 int fill_dot_3 (solver_t *solver, int dot_number);
 int fill_dot_4 (solver_t *solver, int dot_number);
 int fill_dot_5 (solver_t *solver, int dot_number);
+int fill_dot_6 (solver_t *solver, int dot_number);
 
 typedef struct
 {

@@ -24,12 +24,7 @@ typedef struct
 
   double *prev_answer;
 
-  double *r_start;
-  double *r;
-  double *p;
-  double *u;
-  double *q;
-  double *tmp1, tmp2;
+  double *workspace;
 
   double alpha;
   double beta;
@@ -87,7 +82,7 @@ void solver_init (solver_t *solver,
 
 void solver_free (solver_t *solver);
 
-void solver_run (solver_t *solver);
+int solver_run(solver_t *solver);
 
 void msr_matrix_rhs_init (int total_equations_amount,
                           msr_matrix_rhs *matrix_rhs_storage);

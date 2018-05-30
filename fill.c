@@ -1,6 +1,7 @@
 #include "fill.h"
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 double f0 ()
 {
@@ -14,6 +15,12 @@ double f1 ()
 
 double f2 ()
 {
+  return 0;
+}
+
+int fill_zero_layer (solver_t *solver)
+{
+  memset (solver->base_ws->prev_answer, 0, solver->base_ws->matrix_rhs_storage->n * sizeof (double));
   return 0;
 }
 
@@ -39,26 +46,40 @@ int fill_dot (solver_t *solver, int dot_number)
   switch (solver->dot_type[dot_number])
     {
     case 0:
-      res = fill_dot_0 (solver, dot_number);
-      break;
+      {
+        res = fill_dot_0 (solver, dot_number);
+        break;
+      }
     case 1:
-      res = fill_dot_1 (solver, dot_number);
-      break;
+      {
+        res = fill_dot_1 (solver, dot_number);
+        break;
+      }
     case 2:
-      res = fill_dot_2 (solver, dot_number);
-      break;
+      {
+        res = fill_dot_2 (solver, dot_number);
+        break;
+      }
     case 3:
-      res = fill_dot_3 (solver, dot_number);
-      break;
+      {
+        res = fill_dot_3 (solver, dot_number);
+        break;
+      }
     case 4:
-      res = fill_dot_4 (solver, dot_number);
-      break;
+      {
+        res = fill_dot_4 (solver, dot_number);
+        break;
+      }
     case 5:
-      res = fill_dot_5 (solver, dot_number);
-      break;
-    default:
-      printf ("Unknown dot type\n");
-      res = -1;
+      {
+        res = fill_dot_5 (solver, dot_number);
+        break;
+      }
+    case 6:
+      {
+        res = fill_dot_6 (solver, dot_number);
+        break;
+      }
     }
 
   return res;
@@ -145,7 +166,7 @@ int fill_dot_0 (solver_t *solver, int dot_number)
     }
   
   // Ecuation for V1
-  solver->base_ws->matrix_rhs_storage->row_non_zeros += 7;
+  solver->base_ws->matrix_rhs_storage->total_nz += 7;
 
   rhs[eq_v1] = 6 * prev[eq_v1] + 6 * tau * f1 () + 1.5 * tau * prev[eq_v1] * (prev[get_equation_v2 (top)] - prev[get_equation_v2 (bot)]) / hy -
       (mu_voln - mu * exp_minusG) * 6 * tau * 4 * (prev[get_equation_v1 (right)] - 2 * prev[eq_v1] + prev[get_equation_v1 (left)]) / (3 * hx * hx) +
@@ -182,7 +203,7 @@ int fill_dot_0 (solver_t *solver, int dot_number)
     }
 
   // Equation for V2
-  solver->base_ws->matrix_rhs_storage->row_non_zeros += 7;
+  solver->base_ws->matrix_rhs_storage->total_nz += 7;
 
   rhs[eq_v2] = 6 * prev[eq_v2] + 6 * tau * f2 () + 1.5 * tau * prev[eq_v2] * (prev[get_equation_v1 (right)] - prev[get_equation_v1 (left)]) / hx -
       (mu_voln - mu * exp_minusG) * 6 * tau * 4 * (prev[get_equation_v2 (top)] - 2 * prev[eq_v2] + prev[get_equation_v2 (bot)]) / (3 * hy * hy) +
